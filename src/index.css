@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Nunito';
-  src: url('./fonts/nunito.ttf') format('truetype');
+  src: local('Nunito'), url('./fonts/nunito/Nunito-Medium.woff2') format('woff');
+  font-display: swap;
 }
 
 body {

@@ -1,19 +1,19 @@
+import { useAuthStore } from "@/utils/storage";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import get from "lodash.get";
 
 export default function useRedirectionToLoginOrHome() {
     const navigate = useNavigate();
-
-    // TODO Should verify if token exists and token expiration date
-    const authenticated = false;
+    const authToken = useAuthStore((state) => get(state, "authToken"));
 
     useEffect(() => {
-        if (!authenticated) {
+        if (!authToken) {
             navigate("/login");
         } else {
             navigate("/");
         }
-    }, []);
+    }, [authToken]);
 
     return [];
 }
