@@ -3,6 +3,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Login from "@/pages/login/Login";
 import Home from "@/pages/home/Home";
+import { FullscreenLoading } from "@/components/FullscreenLoading";
 
 // const App = lazy(() => {
 //     return Promise.all([
@@ -42,5 +43,9 @@ export const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/test",
+        element: <FullscreenLoading />,
     },
 ]);

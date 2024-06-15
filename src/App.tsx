@@ -14,6 +14,9 @@ function App() {
     const [currentThemeMode, _] = useState<PaletteMode>("light");
 
     const theme = createTheme({
+        typography: {
+            fontFamily: ["Nunito", "Roboto", "Helvetica", "Arial", "sans-serif"].join(",")
+        },
         palette: {
             mode: currentThemeMode,
             primary: {

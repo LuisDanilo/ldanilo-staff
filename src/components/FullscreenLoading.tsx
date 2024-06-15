@@ -13,7 +13,7 @@ export function FullscreenLoading() {
                 <Typography variant="h1" color="white">
                     Motivy
                 </Typography>
-                <Typography variant="h4" color="white">
+                <Typography variant="h4" color="white" textAlign={"center"}>
                     El poder del reconocimiento
                 </Typography>
             </Stack>
