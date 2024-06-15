@@ -1,35 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import { PaletteMode, ThemeProvider, createTheme } from "@mui/material";
+import { RouterProvider } from "react-router-dom";
+import { router } from "@/utils/domRouter";
 
 function App() {
-  const [count, setCount] = useState(0)
+    // TODO Make API call to retrieve theme colors by origin
+    // TODO Make currentThemeMode a persisten value
+    // TODO Always create a persistent value for it if not already exists
+    // TODO Check what system i will use for persistent data
+    // TODO Maybe it will be needed a react context to make able a child component
+    //  to change theme configured here (in this parent component)
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const [currentThemeMode, _] = useState<PaletteMode>("light");
+
+    const theme = createTheme({
+        palette: {
+            mode: currentThemeMode,
+            primary: {
+                // TODO This validation should no exists
+                //  instead it should retrieve values of backend based on persistent state
+                main: currentThemeMode === "light" ? "#25255b" : "#030339",
+            },
+        },
+    });
+
+    return (
+        <ThemeProvider theme={theme}>
+            <RouterProvider router={router} />
+        </ThemeProvider>
+    );
 }
 
-export default App
+export default App;
