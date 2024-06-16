@@ -1,11 +1,10 @@
 import { useAuthStore } from "@/utils/storage";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import get from "lodash.get";
 
-export default function useRedirectionToLoginOrHome() {
+export function useRedirectionToLoginOrHome() {
     const navigate = useNavigate();
-    const authToken = useAuthStore((state) => get(state, "authToken"));
+    const authToken = useAuthStore((state) => state.authToken);
 
     useEffect(() => {
         if (!authToken) {
