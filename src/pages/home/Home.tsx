@@ -6,7 +6,7 @@ import { Button, Stack } from "@mui/material";
 
 export default function Home() {
     const [showLoadingScreen] = useLoadingScreenCountdown();
-    useRedirectionToLoginOrHome();
+    const [] = useRedirectionToLoginOrHome();
 
     const setToken = useAuthStore((state) => state.setToken);
     const switchTheme = useThemeStore((state) => state.switchTheme);

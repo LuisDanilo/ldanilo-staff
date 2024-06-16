@@ -1,0 +1,6 @@
+{
+    "success": true,
+    "data": {
+        "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJNb3RpdnlJbmMiLCJpYXQiOjE3MTg1NzcxNzcsImV4cCI6MTc1MDExNDk5OCwiYXVkIjoicGFudGhlci1idXJzdGluZy1uYXJ3aGFsLm5ncm9rLWZyZWUuYXBwIiwic3ViIjoiMSIsIm5hbWUiOiJEYW5pbG8iLCJsYXN0bmFtZSI6Ik1vdGl2eSIsImVtYWlsIjoibGRhbmlsb0Btb3RpdnkuY28ifQ.Auve4eDcgCJhcPeaXu4JGUsjhcFOWIiU5KWnp0MpElM"
+    }
+}

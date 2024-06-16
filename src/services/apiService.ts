@@ -1,4 +1,5 @@
 import getThemeColorsMock from "@/services/mocks/getThemeColors.json"
+import performLoginMock from "@/services/mocks/performLogin.json"
 
 interface GetThemeColors {
     light: {
@@ -13,22 +14,29 @@ interface GetThemeColors {
 
 export function getThemeColors(): Promise<GetThemeColors | null> {
     return new Promise((resolve, reject) => {
-        if (Math.random() > 0.5) {
-            resolve(getThemeColorsMock)
+        const status = Math.random() > 0.5 ? 200 : 500
+        if (status === 200) {
+            resolve(getThemeColorsMock.data)
         } else {
             reject(null)
         }
     })
-    // return new Promise((resolve, reject) => {
-    //     axios({
-    //         url: "",
-    //         method: "GET"
-    //     }).then(response => {
-    //         if(response.status === 200) {
-    //             resolve(response.data)
-    //         } else {
-    //             reject(response)
-    //         }
-    //     }).catch(e => reject(e))
-    // })
 }
+
+interface PerformLogin {
+    token: string
+}
+
+export function performLogin(_email: string): Promise<PerformLogin | null> {
+    return new Promise((resolve, reject) => {
+        const status = Math.random() > 0.5 ? 200 : 500
+        setTimeout(() => {
+            if (status === 200) {
+                resolve(performLoginMock.data)
+            } else {
+                reject(null)
+            }
+        }, 500)
+
+    })
+} 

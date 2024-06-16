@@ -25,7 +25,7 @@ export function useDynamicTheme() {
     const themeColorsQuery = useQuery({
         queryKey: ["themeColors"],
         queryFn: getThemeColors,
-        refetchInterval: toMilis(5)
+        refetchInterval: toMilis(5) // 5 minutes
     });
 
     useEffect(() => {

@@ -1,10 +1,14 @@
 {
-    "light": {
-        "primary": "#25255b",
-        "background": "#FFFFFF"
+    "success": true,
+    "data": {
+        "light": {
+            "primary": "#25255b",
+            "background": "#FFFFFF"
+        },
+        "dark": {
+            "primary": "#030339",
+            "background": "#3a3a3a"
+        }
     },
-    "dark": {
-        "primary": "#030339",
-        "background": "#3a3a3a"
-    }
+    "error": null
 }
