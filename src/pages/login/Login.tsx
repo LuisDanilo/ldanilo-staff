@@ -118,7 +118,8 @@ export default function Login() {
                     height={"100%"}
                     alignItems={"center"}
                     justifyContent={isVhSmaller || !isDownMd ? "center" : "flex-start"}
-                    margin={"2rem 3rem"}
+                    margin={"0rem 3rem"}
+                    padding={"3rem 0"}
                     spacing={2}
                     sx={{
                         overflowY: "scroll",
