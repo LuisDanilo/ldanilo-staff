@@ -68,9 +68,6 @@ export default function Login() {
     const [] = useRedirectionToLoginOrHome();
     const [theme] = useDynamicTheme();
     const isDownMd = useMediaQuery(theme.breakpoints.down("md"));
-    const isBetweenSmAndMd = useMediaQuery(
-        theme.breakpoints.between("sm", "md")
-    );
     // If true Viewport height is smaller than viewport width
     // Else Viewport height is greater than or equal to viewport width
     const isVhSmaller = useMediaQuery("(max-aspect-ratio: 1/1)");
@@ -113,18 +110,22 @@ export default function Login() {
                         component={"img"}
                         src={loginImageDesktop}
                         width={"60%"}
-                        hidden={isDownMd}
+                        sx={{ aspectRatio: "1/1" }}
+                        hidden={isDownMd || isVhSmaller}
                     />
                 </Fade>
                 <Stack
-                    width={isDownMd ? "100%" : "40%"}
+                    width={isDownMd || isVhSmaller ? "100%" : "40%"}
                     height={"100%"}
                     alignItems={"center"}
                     justifyContent={isVhSmaller ? "center" : "flex-start"}
-                    margin={isBetweenSmAndMd ? "0 10rem" : "0 3rem"}
+                    margin={isDownMd || isVhSmaller ? "0 10rem" : "0 3rem"}
                     spacing={2}
                     padding={"2rem 0"}
-                    overflow={"scroll"}
+                    sx={{
+                        overflowY: "scroll",
+                        scrollbarColor: "transparent transparent",
+                    }}
                 >
                     <Stack
                         direction={"row"}
