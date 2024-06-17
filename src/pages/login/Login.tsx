@@ -109,19 +109,17 @@ export default function Login() {
                     <Box
                         component={"img"}
                         src={loginImageDesktop}
-                        width={"60%"}
-                        sx={{ aspectRatio: "1/1" }}
+                        width={"70%"}
                         hidden={isDownMd || isVhSmaller}
                     />
                 </Fade>
                 <Stack
-                    width={isDownMd || isVhSmaller ? "100%" : "40%"}
+                    width={isDownMd || isVhSmaller ? "100%" : "30%"}
                     height={"100%"}
                     alignItems={"center"}
-                    justifyContent={isVhSmaller ? "center" : "flex-start"}
-                    margin={isDownMd || isVhSmaller ? "0 10rem" : "0 3rem"}
+                    justifyContent={isVhSmaller || !isDownMd ? "center" : "flex-start"}
+                    margin={"2rem 3rem"}
                     spacing={2}
-                    padding={"2rem 0"}
                     sx={{
                         overflowY: "scroll",
                         scrollbarColor: "transparent transparent",
