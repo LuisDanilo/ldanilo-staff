@@ -20,6 +20,8 @@ import MicrosoftIcon from "@mui/icons-material/Microsoft";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useDynamicTheme } from "@/hooks/useDynamicTheme";
 import { Suspense, lazy } from "react";
+import loginImageDesktop from "@/assets/login-image.jpg"
+import motivyLogo640 from "@/assets/motivy-logo-640.png"
 
 const FullscreenLoading = lazy(() => import("@/components/FullscreenLoading"));
 
@@ -101,7 +103,7 @@ export default function Login() {
                 <Fade in={true}>
                     <Box
                         component={"img"}
-                        src="./src/assets/login-image.jpg"
+                        src={loginImageDesktop}
                         width={"70%"}
                         hidden={isDownMd}
                     />
@@ -122,7 +124,7 @@ export default function Login() {
                     >
                         <Box
                             component={"img"}
-                            src="src/assets/motivy-logo-640.png"
+                            src={motivyLogo640}
                             alt="motivy-logo"
                             width={"25%"}
                         />
