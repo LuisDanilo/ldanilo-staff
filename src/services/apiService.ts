@@ -4,17 +4,19 @@ import performLoginMock from "@/services/mocks/performLogin.json"
 interface GetThemeColors {
     light: {
         primary: string
+        secondary: string
         background: string
     }
     dark: {
         primary: string
+        secondary: string
         background: string
     }
 }
 
 export function getThemeColors(): Promise<GetThemeColors | null> {
     return new Promise((resolve, reject) => {
-        const status = Math.random() > 0.5 ? 200 : 500
+        const status = Math.random() > 0 ? 200 : 500
         if (status === 200) {
             resolve(getThemeColorsMock.data)
         } else {

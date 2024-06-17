@@ -1,8 +1,10 @@
-import { FullscreenLoading } from "@/components/FullscreenLoading";
 import { useLoadingScreenCountdown } from "@/hooks/useLoadingScreenCountdown";
 import { useRedirectionToLoginOrHome } from "@/hooks/useRedirectionToLoginOrHome";
 import { useAuthStore, useThemeStore } from "@/utils/storage";
 import { Button, Stack } from "@mui/material";
+import { Suspense, lazy } from "react";
+
+const FullscreenLoading = lazy(() => import("@/components/FullscreenLoading"))
 
 export default function Home() {
     const [showLoadingScreen] = useLoadingScreenCountdown();
@@ -20,7 +22,9 @@ export default function Home() {
     };
 
     if (showLoadingScreen) {
-        return <FullscreenLoading />;
+        return <Suspense>
+            <FullscreenLoading />
+        </Suspense>
     } else {
         return (
             <Stack

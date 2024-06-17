@@ -20,3 +20,5 @@ export function FullscreenLoading() {
         </Fade>
     );
 }
+
+export default FullscreenLoading

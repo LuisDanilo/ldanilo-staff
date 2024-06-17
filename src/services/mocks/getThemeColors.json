@@ -3,10 +3,12 @@
     "data": {
         "light": {
             "primary": "#25255b",
+            "secondary": "#3E70B6",
             "background": "#FFFFFF"
         },
         "dark": {
-            "primary": "#030339",
+            "primary": "#1a2340",
+            "secondary": "#b3c6ff",
             "background": "#3a3a3a"
         }
     },
