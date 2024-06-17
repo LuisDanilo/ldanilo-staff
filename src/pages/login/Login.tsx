@@ -20,8 +20,8 @@ import MicrosoftIcon from "@mui/icons-material/Microsoft";
 import GoogleIcon from "@mui/icons-material/Google";
 import { useDynamicTheme } from "@/hooks/useDynamicTheme";
 import { Suspense, lazy } from "react";
-import loginImageDesktop from "@/assets/login-image.jpg"
-import motivyLogo640 from "@/assets/motivy-logo-640.png"
+import loginImageDesktop from "@/assets/login-image.jpg";
+import motivyLogo640 from "@/assets/motivy-logo-640.png";
 
 const FullscreenLoading = lazy(() => import("@/components/FullscreenLoading"));
 
@@ -99,28 +99,36 @@ export default function Login() {
         );
     } else {
         return (
-            <Stack width={"100%"} height={"100%"} direction={"row"}>
+            <Stack
+                width={"100%"}
+                height={"100%"}
+                direction={"row"}
+                overflow={"hidden"}
+            >
                 <Fade in={true}>
                     <Box
                         component={"img"}
                         src={loginImageDesktop}
-                        width={"70%"}
+                        width={"60%"}
                         hidden={isDownMd}
                     />
                 </Fade>
                 <Stack
-                    width={isDownMd ? "100%" : "30%"}
+                    width={isDownMd ? "100%" : "40%"}
                     height={"100%"}
                     alignItems={"center"}
-                    justifyContent={"center"}
-                    padding={isBetweenSmAndMd ? 20 : 5}
+                    justifyContent={"flex-start"}
+                    margin={isBetweenSmAndMd ? "0 10rem" : "0 3rem"}
                     spacing={2}
+                    padding={"2rem 0"}
+                    overflow={"scroll"}
                 >
                     <Stack
                         direction={"row"}
                         width={"100%"}
                         justifyContent={"center"}
                         alignItems={"center"}
+                        height={"100%"}
                     >
                         <Box
                             component={"img"}
