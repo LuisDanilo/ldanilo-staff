@@ -71,6 +71,9 @@ export default function Login() {
     const isBetweenSmAndMd = useMediaQuery(
         theme.breakpoints.between("sm", "md")
     );
+    // If true Viewport height is smaller than viewport width
+    // Else Viewport height is greater than or equal to viewport width
+    const isVhSmaller = useMediaQuery("(max-aspect-ratio: 1/1)");
 
     const setToken = useAuthStore((state) => state.setToken);
 
@@ -117,7 +120,7 @@ export default function Login() {
                     width={isDownMd ? "100%" : "40%"}
                     height={"100%"}
                     alignItems={"center"}
-                    justifyContent={"flex-start"}
+                    justifyContent={isVhSmaller ? "center" : "flex-start"}
                     margin={isBetweenSmAndMd ? "0 10rem" : "0 3rem"}
                     spacing={2}
                     padding={"2rem 0"}
@@ -128,7 +131,6 @@ export default function Login() {
                         width={"100%"}
                         justifyContent={"center"}
                         alignItems={"center"}
-                        height={"100%"}
                     >
                         <Box
                             component={"img"}
