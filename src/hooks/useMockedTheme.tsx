@@ -1,5 +1,5 @@
-import { PaletteMode, createTheme } from "@mui/material"
-import { useEffect, useState } from "react"
+import { PaletteMode, createTheme } from "@mui/material";
+import { useEffect, useState } from "react";
 
 const fontFamily = [
     "Nunito",
@@ -10,12 +10,12 @@ const fontFamily = [
 ].join(",");
 
 export function useMockedTheme(themeMode: PaletteMode) {
-    const [theme, setTheme] = useState(createTheme({}))
+    const [theme, setTheme] = useState(createTheme({}));
 
     useEffect(() => {
         const getMockData = async () => {
-            const data = await import("@/services/mocks/getThemeColors.json")
-            await import("@/nunito.css")
+            const data = await import("@/services/mocks/getThemeColors.json");
+            await import("@/nunito.css");
             setTheme(
                 createTheme({
                     typography: {
@@ -30,8 +30,7 @@ export function useMockedTheme(themeMode: PaletteMode) {
                             main: data.data[themeMode].secondary,
                         },
                         background: {
-                            default:
-                                data.data[themeMode].background,
+                            default: data.data[themeMode].background,
                         },
                     },
                     components: {
@@ -45,9 +44,9 @@ export function useMockedTheme(themeMode: PaletteMode) {
                     },
                 })
             );
-        }
-        getMockData().then()
-    }, [])
+        };
+        getMockData().then();
+    }, []);
 
-    return [theme]
+    return [theme];
 }

@@ -28,7 +28,7 @@ export function useDynamicTheme() {
             const { getThemeColors } = await import("@/services/apiService");
             return getThemeColors();
         },
-        refetchInterval: 5000
+        refetchInterval: 5000,
     });
 
     useEffect(() => {

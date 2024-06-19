@@ -117,7 +117,9 @@ export default function Login() {
                     width={isDownMd || isVhSmaller ? "100%" : "30%"}
                     height={"100%"}
                     alignItems={"center"}
-                    justifyContent={isVhSmaller || !isDownMd ? "center" : "flex-start"}
+                    justifyContent={
+                        isVhSmaller || !isDownMd ? "center" : "flex-start"
+                    }
                     margin={"0rem 3rem"}
                     padding={"3rem 0"}
                     spacing={2}
