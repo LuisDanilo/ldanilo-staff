@@ -1,15 +1,43 @@
+import { useFigmaBreakpoints } from "@/hooks/useFigmaBreakpoints";
 import { useMockedTheme } from "@/hooks/useMockedTheme";
-import {
-    PaletteMode,
-    Stack,
-    ThemeProvider,
-    Typography,
-    useMediaQuery,
-} from "@mui/material";
+import { PaletteMode, Stack, ThemeProvider, Typography } from "@mui/material";
+import { useMemo } from "react";
 
 export function SplashScreen() {
-    const isWidth414OrLess = useMediaQuery("(max-width: 414px)");
-    const isWidth320OrLess = useMediaQuery("(max-width: 320px)");
+    const [
+        isWidth320OrLess,
+        isWidth414OrLess,
+        isWidth834OrLess,
+        isWidth1440OrLess,
+    ] = useFigmaBreakpoints();
+
+    const titleVariant = useMemo(() => {
+        if (isWidth320OrLess) {
+            return "h3";
+        } else if (isWidth414OrLess) {
+            return "h2";
+        } else if (isWidth834OrLess) {
+            return "h1";
+        } else if (isWidth1440OrLess) {
+            return "h1";
+        } else {
+            return "h1";
+        }
+    }, [isWidth320OrLess, isWidth414OrLess, isWidth834OrLess]);
+
+    const subTitleVariant = useMemo(() => {
+        if (isWidth320OrLess) {
+            return "h6";
+        } else if (isWidth414OrLess) {
+            return "h5";
+        } else if (isWidth834OrLess) {
+            return "h4";
+        } else if (isWidth1440OrLess) {
+            return "h4";
+        } else {
+            return "h4";
+        }
+    }, [isWidth320OrLess, isWidth414OrLess, isWidth834OrLess]);
 
     return (
         <Stack
@@ -19,20 +47,10 @@ export function SplashScreen() {
             justifyContent={"center"}
             alignItems={"center"}
         >
-            <Typography
-                color={"white"}
-                variant={
-                    isWidth320OrLess ? "h3" : isWidth414OrLess ? "h2" : "h2"
-                }
-            >
+            <Typography color={"white"} variant={titleVariant}>
                 Motivy
             </Typography>
-            <Typography
-                color={"white"}
-                variant={
-                    isWidth320OrLess ? "h6" : isWidth414OrLess ? "h5" : "h5"
-                }
-            >
+            <Typography color={"white"} variant={subTitleVariant}>
                 El poder del reconocimiento
             </Typography>
         </Stack>
