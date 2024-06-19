@@ -77,6 +77,7 @@ export const Tablet: Story = {
         },
     },
 };
+
 export const Laptop: Story = {
     args: {
         themeMode: "light",
@@ -94,6 +95,48 @@ export const Laptop: Story = {
                 },
             },
             defaultViewport: "MacBookAir",
+        },
+    },
+};
+
+export const LaptopL: Story = {
+    args: {
+        themeMode: "light",
+    },
+    parameters: {
+        layout: "fullscreen",
+        viewport: {
+            viewports: {
+                Desktop: {
+                    name: "Desktop",
+                    styles: {
+                        width: "1440px",
+                        height: "1024px",
+                    },
+                },
+            },
+            defaultViewport: "Desktop",
+        },
+    },
+};
+
+export const Desktop4K: Story = {
+    args: {
+        themeMode: "light",
+    },
+    parameters: {
+        layout: "fullscreen",
+        viewport: {
+            viewports: {
+                Desktop4K: {
+                    name: "Desktop4K",
+                    styles: {
+                        width: "1920px",
+                        height: "1080px",
+                    },
+                },
+            },
+            defaultViewport: "Desktop4K",
         },
     },
 };
