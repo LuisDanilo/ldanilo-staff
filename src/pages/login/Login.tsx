@@ -1,8 +1,9 @@
 import { useLoadingScreenCountdown } from "@/hooks/useLoadingScreenCountdown";
 import { useRedirectionToLoginOrHome } from "@/hooks/useRedirectionToLoginOrHome";
-import { useAuthStore } from "@/utils/storage";
+import { useAuthStore, useUserStore } from "@/utils/storage";
 import {
-    // Alert,
+    Button,
+    Typography, // Alert,
     // AlertProps,
     // Box,
     // Button,
@@ -18,6 +19,7 @@ import { useMutation } from "@tanstack/react-query";
 // import MicrosoftIcon from "@mui/icons-material/Microsoft";
 // import GoogleIcon from "@mui/icons-material/Google";
 import { Suspense, lazy, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 // import loginImageDesktop from "@/assets/login-image.jpg";
 // import motivyLogo640 from "@/assets/motivy-logo-640.png";
 
@@ -47,7 +49,7 @@ const setTokenTimeout = 1000;
 //                 // Default icon vertical align is weird, I preffer using this icon
 //                 icon={<DoneIcon sx={{ color: "#FFF" }} />}
 //             >
-//                 {/* 
+//                 {/*
 //                     verticalAlign: super and display: inline-box  were used
 //                     to fix a weird alignment of Alert text.
 //                     With this fix the text is more centered vertically.
@@ -73,6 +75,10 @@ export default function Login() {
     // const isVhSmaller = useMediaQuery("(max-aspect-ratio: 1/1)");
 
     const setToken = useAuthStore((state) => state.setToken);
+    const setLanguage = useUserStore((state) => state.setLanguage);
+    const language = useUserStore((state) => state.language);
+
+    const { t } = useTranslation();
 
     const loginMutation = useMutation({
         mutationKey: ["login"],
@@ -102,11 +108,27 @@ export default function Login() {
     if (showLoadingScreen) {
         return (
             <Suspense>
-                <SplashScreen />
+                <SplashScreen subtitle={t("slogan")} />
             </Suspense>
         );
     } else {
-        return <>Login page</>
+        return (
+            <>
+                <Typography variant="body1">{t("slogan")}</Typography>
+                <Typography variant="body1">
+                    Idioma actual: {language}
+                </Typography>
+                <Button
+                    onClick={() => {
+                        language === "es"
+                            ? setLanguage("en")
+                            : setLanguage("es");
+                    }}
+                >
+                    Cambiar idioma
+                </Button>
+            </>
+        );
         // return (
         //     <Stack
         //         width={"100%"}

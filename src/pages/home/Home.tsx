@@ -3,6 +3,7 @@ import { useRedirectionToLoginOrHome } from "@/hooks/useRedirectionToLoginOrHome
 import { useAuthStore, useThemeStore } from "@/utils/storage";
 import { Button, Stack } from "@mui/material";
 import { Suspense, lazy } from "react";
+import { useTranslation } from "react-i18next";
 
 const SplashScreen = lazy(
     () => import("@/components/SplashScreen/SplashScreen")
@@ -15,6 +16,8 @@ export default function Home() {
     const setToken = useAuthStore((state) => state.setToken);
     const switchTheme = useThemeStore((state) => state.switchTheme);
 
+    const { t } = useTranslation();
+
     const handleHomeButtonClick = () => {
         setToken(null);
     };
@@ -26,7 +29,7 @@ export default function Home() {
     if (showLoadingScreen) {
         return (
             <Suspense>
-                <SplashScreen />
+                <SplashScreen subtitle={t("slogan")} />
             </Suspense>
         );
     } else {

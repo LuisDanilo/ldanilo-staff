@@ -4,7 +4,7 @@ import { ResponsiveGrid } from "../Layouts/ResponsiveGrid";
 import { useFigmaBreakpoints } from "@/hooks/useFigmaBreakpoints";
 
 export interface SplashScreenProps {
-    subtitle?: string;
+    subtitle: string;
 }
 
 export default function SplashScreen(props: SplashScreenProps) {

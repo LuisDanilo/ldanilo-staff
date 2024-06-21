@@ -1,11 +1,7 @@
+import { AuthStore, ThemeStore, UserStore } from "@/types/storage.types"
 import { PaletteMode } from "@mui/material"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-
-interface AuthStore {
-    authToken: string | null
-    setToken: (token: string | null) => void
-}
 
 export const useAuthStore = create<AuthStore>()(
     persist(
@@ -15,15 +11,9 @@ export const useAuthStore = create<AuthStore>()(
                 setToken: (token) => setStore(() => ({ authToken: token }))
             }
         },
-        { name: 'auth-storage' }
+        { name: "auth-storage" }
     )
 )
-
-interface ThemeStore {
-    theme: PaletteMode
-    setTheme: (theme: PaletteMode) => void
-    switchTheme: () => void
-}
 
 export const useThemeStore = create<ThemeStore>()(
     persist(
@@ -34,6 +24,20 @@ export const useThemeStore = create<ThemeStore>()(
                 switchTheme: () => setStore((store) => store.theme === "light" ? { theme: "dark" } : { theme: "light" })
             }
         },
-        { name: 'theme' }
+        { name: "theme" }
+    )
+)
+
+export const useUserStore = create<UserStore>()(
+    persist(
+        (setStore) => {
+            return {
+                user: null,
+                language: "es",
+                setUser: (user: Record<string, any>) => setStore(() => ({ user })),
+                setLanguage: (language) => setStore(() => ({ language }))
+            }
+        },
+        { name: "user" }
     )
 )
