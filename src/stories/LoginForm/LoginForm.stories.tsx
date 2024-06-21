@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { StorySplashScreen } from "@/components/SplashScreen/StorySplashScreen";
+import { StoryLoginForm } from "@/components/LoginForm/StoryLoginForm";
 import {
     storyDesktop4K,
     storyLaptop,
@@ -10,12 +10,12 @@ import {
     storyTablet,
 } from "@/stories/utils/viewports";
 
-const meta: Meta<typeof StorySplashScreen> = {
-    title: "components/SplashScreen",
-    component: StorySplashScreen,
+const meta: Meta<typeof StoryLoginForm> = {
+    title: "components/LoginForm",
+    component: StoryLoginForm,
 };
 
-type Story = StoryObj<typeof StorySplashScreen>;
+type Story = StoryObj<typeof StoryLoginForm>;
 
 export const MobileS = storyMobileS<Story>();
 export const MobileM = storyMobileM<Story>();

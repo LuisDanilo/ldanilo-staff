@@ -4,7 +4,9 @@ import { useAuthStore, useThemeStore } from "@/utils/storage";
 import { Button, Stack } from "@mui/material";
 import { Suspense, lazy } from "react";
 
-const FullscreenLoading = lazy(() => import("@/components/FullscreenLoading"));
+const SplashScreen = lazy(
+    () => import("@/components/SplashScreen/SplashScreen")
+);
 
 export default function Home() {
     const [showLoadingScreen] = useLoadingScreenCountdown();
@@ -24,7 +26,7 @@ export default function Home() {
     if (showLoadingScreen) {
         return (
             <Suspense>
-                <FullscreenLoading />
+                <SplashScreen />
             </Suspense>
         );
     } else {

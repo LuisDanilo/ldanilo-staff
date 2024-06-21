@@ -5,9 +5,13 @@ export function useLoadingScreenCountdown() {
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
     
     useEffect(() => {
-        setTimeout(() => {
+        const timeout = setTimeout(() => {
             setShowLoadingScreen(false);
         }, 1500);
+        
+        return () => {
+            clearTimeout(timeout)
+        }
     }, []);
 
     return [showLoadingScreen]
