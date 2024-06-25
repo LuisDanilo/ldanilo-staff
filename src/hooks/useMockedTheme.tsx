@@ -1,3 +1,4 @@
+import { MUIBreakpointValues } from "@/utils/misc";
 import { PaletteMode, createTheme } from "@mui/material";
 import { useEffect, useState } from "react";
 
@@ -10,7 +11,16 @@ const fontFamily = [
 ].join(",");
 
 export function useMockedTheme(themeMode: PaletteMode) {
-    const [theme, setTheme] = useState(createTheme({}));
+    const [theme, setTheme] = useState(
+        createTheme({
+            typography: {
+                fontFamily,
+            },
+            breakpoints: {
+                values: MUIBreakpointValues,
+            },
+        })
+    );
 
     useEffect(() => {
         const getMockData = async () => {
@@ -20,6 +30,9 @@ export function useMockedTheme(themeMode: PaletteMode) {
                 createTheme({
                     typography: {
                         fontFamily,
+                    },
+                    breakpoints: {
+                        values: MUIBreakpointValues,
                     },
                     palette: {
                         mode: themeMode,

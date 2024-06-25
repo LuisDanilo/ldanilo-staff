@@ -1,3 +1,4 @@
+import { MUIBreakpointValues } from "@/utils/misc";
 import { useThemeStore } from "@/utils/storage";
 import { Theme, createTheme } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
@@ -16,6 +17,9 @@ export function useDynamicTheme() {
         createTheme({
             typography: {
                 fontFamily,
+            },
+            breakpoints: {
+                values: MUIBreakpointValues,
             },
         })
     );
@@ -37,6 +41,9 @@ export function useDynamicTheme() {
                 createTheme({
                     typography: {
                         fontFamily,
+                    },
+                    breakpoints: {
+                        values: MUIBreakpointValues,
                     },
                     palette: {
                         mode: themeMode,

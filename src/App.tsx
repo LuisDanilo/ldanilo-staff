@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { RouterProvider } from "react-router-dom";
-import { router } from "@/utils/domRouter";
-import { useDynamicTheme } from "./hooks/useDynamicTheme";
+import { router } from "@/router/Router";
+import { useDynamicTheme } from "@/hooks/useDynamicTheme";
 import { useTranslation } from "react-i18next";
-import { useUserStore } from "./utils/storage";
+import { useUserStore } from "@/utils/storage";
 import { useEffect } from "react";
 
 function App() {

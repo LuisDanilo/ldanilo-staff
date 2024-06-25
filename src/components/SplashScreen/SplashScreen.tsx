@@ -1,38 +1,65 @@
-import { Box, Fade, Typography, Grid } from "@mui/material";
+import { Box, Fade, Typography, Grid, TypographyProps } from "@mui/material";
 import { useMemo } from "react";
-import { useFigmaBreakpoints } from "@/hooks/useFigmaBreakpoints";
 import { useGridParams } from "@/hooks/useGridParams";
 
 export interface SplashScreenProps {
     subtitle: string;
 }
 
+interface TextVariantsMemoReturn {
+    title: Pick<TypographyProps, "variant">;
+    subtitle: Pick<TypographyProps, "variant">;
+}
+
 export default function SplashScreen(props: SplashScreenProps) {
-    const { MobileS, MobileM, MobileL, Tablet } = useFigmaBreakpoints();
+    const {
+        gridProps: { columnSpacing, columns, paddingX },
+        breakpoints: { xs, sm, md, lg, xl },
+    } = useGridParams();
 
-    const { columnSpacing, columns, paddingX } = useGridParams();
-
-    const titleVariant = useMemo(() => {
-        if (MobileS) {
-            return "h3";
-        } else if (MobileM || MobileL) {
-            return "h2";
-        } else {
-            return "h1";
+    const textVariants = useMemo<TextVariantsMemoReturn>(() => {
+        // Default
+        let variants: TextVariantsMemoReturn = {
+            title: {
+                variant: "h3",
+            },
+            subtitle: {
+                variant: "h6",
+            },
+        };
+        if (xl || lg) {
+            variants = {
+                title: {
+                    variant: "h1",
+                },
+                subtitle: {
+                    variant: "h2",
+                },
+            };
+        } else if (md) {
+            variants = {
+                title: {
+                    variant: "h1",
+                },
+                subtitle: {
+                    variant: "h3",
+                },
+            };
+        } else if (sm) {
+            variants = {
+                title: {
+                    variant: "h2",
+                },
+                subtitle: {
+                    variant: "h5",
+                },
+            };
         }
-    }, [MobileS, MobileM, MobileL]);
-
-    const subTitleVariant = useMemo(() => {
-        if (MobileS) {
-            return "h6";
-        } else if (MobileM || MobileL) {
-            return "h5";
-        } else if (Tablet) {
-            return "h3";
-        } else {
-            return "h2";
-        }
-    }, [MobileS, MobileM, MobileL, Tablet]);
+        // else if (xs) {
+        //     console.log("TextVariant: XS");
+        // }
+        return variants;
+    }, [xs, sm, md, lg, xl]);
 
     return (
         <Fade in={true}>
@@ -55,7 +82,7 @@ export default function SplashScreen(props: SplashScreenProps) {
                         alignItems={"flex-end"}
                     >
                         <Typography
-                            variant={titleVariant}
+                            variant={textVariants.title.variant}
                             color={"white"}
                             width={"100%"}
                             textAlign={"center"}
@@ -74,7 +101,7 @@ export default function SplashScreen(props: SplashScreenProps) {
                         alignItems={"flex-start"}
                     >
                         <Typography
-                            variant={subTitleVariant}
+                            variant={textVariants.subtitle.variant}
                             color={"white"}
                             width={"100%"}
                             textAlign={"center"}

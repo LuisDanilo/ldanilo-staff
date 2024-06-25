@@ -8,7 +8,7 @@ import {
     storyMobileM,
     storyMobileS,
     storyTablet,
-} from "@/stories/utils/viewports";
+} from "@/stories/utils/storybookViewports";
 
 const meta: Meta<typeof StorySplashScreen> = {
     title: "components/SplashScreen",
