@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useBreakpoints } from "@/hooks/useBreakpoints";
 
 export function useGridParams() {
-    const { xs, sm, md, lg, xl } = useBreakpoints();
+    const { xs, sm, md, lg, xl, theme } = useBreakpoints();
 
     const gridProps = useMemo(() => {
         // Default
@@ -37,5 +37,5 @@ export function useGridParams() {
         return props;
     }, [xs, sm, md, lg, xl]);
 
-    return { gridProps, breakpoints: { xs, sm, md, lg, xl } };
+    return { gridProps, breakpoints: { xs, sm, md, lg, xl }, theme };
 }

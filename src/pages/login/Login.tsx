@@ -1,8 +1,9 @@
 import { useLoadingScreenCountdown } from "@/hooks/useLoadingScreenCountdown";
 import { useRedirectionToLoginOrHome } from "@/hooks/useRedirectionToLoginOrHome";
-import { useAuthStore, useUserStore } from "@/utils/storage";
+import { useAuthStore, useThemeStore, useUserStore } from "@/utils/storage";
 import {
     Button,
+    IconButton,
     Typography, // Alert,
     // AlertProps,
     // Box,
@@ -18,6 +19,8 @@ import { useMutation } from "@tanstack/react-query";
 // import KeyIcon from "@mui/icons-material/Key";
 // import MicrosoftIcon from "@mui/icons-material/Microsoft";
 // import GoogleIcon from "@mui/icons-material/Google";
+import ModeNightIcon from "@mui/icons-material/ModeNight";
+import WbSunnyIcon from "@mui/icons-material/WbSunny";
 import { Suspense, lazy, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 // import loginImageDesktop from "@/assets/login-image.jpg";
@@ -74,9 +77,11 @@ export default function Login() {
     // Else Viewport height is greater than or equal to viewport width
     // const isVhSmaller = useMediaQuery("(max-aspect-ratio: 1/1)");
 
-    const setToken = useAuthStore((state) => state.setToken);
-    const setLanguage = useUserStore((state) => state.setLanguage);
-    const language = useUserStore((state) => state.language);
+    const setToken = useAuthStore((store) => store.setToken);
+    const language = useUserStore((store) => store.language);
+    const setLanguage = useUserStore((store) => store.setLanguage);
+    const switchTheme = useThemeStore((store) => store.switchTheme);
+    const currentTheme = useThemeStore((store) => store.theme);
 
     const { t } = useTranslation();
 
@@ -91,6 +96,14 @@ export default function Login() {
     // const handleLoginButtonClick = () => {
     //     loginMutation.mutate("ldanilo@motivy.co");
     // };
+
+    const handleSwitchThemeButtonClick = () => {
+        switchTheme();
+    };
+
+    const handleChangeLanguageButtonClick = () => {
+        language === "es" ? setLanguage("en") : setLanguage("es");
+    };
 
     useEffect(() => {
         let timeoutID: NodeJS.Timeout;
@@ -119,14 +132,18 @@ export default function Login() {
                     Idioma actual: {language}
                 </Typography>
                 <Button
-                    onClick={() => {
-                        language === "es"
-                            ? setLanguage("en")
-                            : setLanguage("es");
-                    }}
+                    variant="contained"
+                    onClick={handleChangeLanguageButtonClick}
                 >
-                    Cambiar idioma
+                    {t("changeLanguage")}
                 </Button>
+                <IconButton onClick={handleSwitchThemeButtonClick}>
+                    {currentTheme === "light" ? (
+                        <ModeNightIcon />
+                    ) : (
+                        <WbSunnyIcon />
+                    )}
+                </IconButton>
             </>
         );
         // return (

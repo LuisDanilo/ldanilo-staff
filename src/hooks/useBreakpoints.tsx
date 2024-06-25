@@ -15,5 +15,6 @@ export function useBreakpoints() {
         md,
         lg,
         xl,
+        theme
     };
 }

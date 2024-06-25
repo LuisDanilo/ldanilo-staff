@@ -15,6 +15,7 @@ export default function SplashScreen(props: SplashScreenProps) {
     const {
         gridProps: { columnSpacing, columns, paddingX },
         breakpoints: { xs, sm, md, lg, xl },
+        theme
     } = useGridParams();
 
     const textVariants = useMemo<TextVariantsMemoReturn>(() => {
@@ -63,7 +64,7 @@ export default function SplashScreen(props: SplashScreenProps) {
 
     return (
         <Fade in={true}>
-            <Box bgcolor={"#25255B"} width={"100vw"} height={"100vh"}>
+            <Box bgcolor={theme.palette.primary.main} width={"100vw"} height={"100vh"}>
                 <Grid
                     columns={columns}
                     columnSpacing={columnSpacing}

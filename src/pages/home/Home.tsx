@@ -13,8 +13,8 @@ export default function Home() {
     const [showLoadingScreen] = useLoadingScreenCountdown();
     const [] = useRedirectionToLoginOrHome();
 
-    const setToken = useAuthStore((state) => state.setToken);
-    const switchTheme = useThemeStore((state) => state.switchTheme);
+    const setToken = useAuthStore((store) => store.setToken);
+    const switchTheme = useThemeStore((store) => store.switchTheme);
 
     const { t } = useTranslation();
 

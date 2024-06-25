@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export function useRedirectionToLoginOrHome() {
     const navigate = useNavigate();
-    const authToken = useAuthStore((state) => state.authToken);
+    const authToken = useAuthStore((store) => store.authToken);
 
     useEffect(() => {
         if (!authToken) {
