@@ -1,11 +1,8 @@
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
-import { ReactNode, useMemo } from "react";
+import { useMediaQuery, useTheme } from "@mui/material";
+import { useMemo } from "react";
 
-interface ResponseGridProps {
-    children: ReactNode[] | ReactNode;
-}
 
-export function ResponsiveGrid(props: ResponseGridProps) {
+export function useGridParams() {
     const theme = useTheme();
 
     // Its important to evaluate from bigger to smaller
@@ -19,46 +16,39 @@ export function ResponsiveGrid(props: ResponseGridProps) {
         if (xl) {
             // ==> [xl, inf) ... [1536px, inf)
             return {
-                cols: 12,
+                columns: 12,
+                columnSpacing: 3, // figma gutter
+                paddingX: 32, // figma margin
                 justifyContent: "center",
-                paddingX: 32,
             };
         } else if (lg) {
             // ==> [lg, xl) ... [1200px, 1536px)
             return {
-                cols: 12,
+                columns: 12,
+                columnSpacing: 3, // figma gutter
+                paddingX: 3, // figma margin
                 justifyContent: "initial",
-                paddingX: 3,
             };
         } else if (md || sm) {
             // [sm, md)
             // [md, lg)
             // ==> [sm,lg) ... [600px, 1200px)
             return {
-                cols: 8,
+                columns: 8,
+                columnSpacing: 2, // figma gutter
+                paddingX: 4, // figma margin
                 justifyContent: "initial",
-                paddingX: 3,
             };
         } else {
             // ==> [xs, sm) ... [0px, 600px)
             return {
-                cols: 4,
+                columns: 4,
+                columnSpacing: 1.5, // figma gutter
+                paddingX: 1.5, // figma margin
                 justifyContent: "initial",
-                paddingX: 3,
             };
         }
     }, [xs, sm, md, lg, xl]);
 
-    return (
-        <Grid
-            container
-            columns={gridProps.cols}
-            columnSpacing={3}
-            paddingX={gridProps.paddingX}
-            justifyContent={gridProps.justifyContent}
-            height={"100%"}
-        >
-            {props.children}
-        </Grid>
-    );
+    return gridProps
 }

@@ -1,69 +1,90 @@
-import { Box, Fade, Grid, Typography } from "@mui/material";
+import { Box, Fade, Typography, Grid } from "@mui/material";
 import { useMemo } from "react";
-import { ResponsiveGrid } from "../Layouts/ResponsiveGrid";
 import { useFigmaBreakpoints } from "@/hooks/useFigmaBreakpoints";
+import { useGridParams } from "@/hooks/useGridParams";
 
 export interface SplashScreenProps {
     subtitle: string;
 }
 
 export default function SplashScreen(props: SplashScreenProps) {
-    const { LEQMobileS, LEQMobileM, LEQMobileL } = useFigmaBreakpoints();
+    const { MobileS, MobileM, MobileL, Tablet } = useFigmaBreakpoints();
+
+    const { columnSpacing, columns, paddingX } = useGridParams();
 
     const titleVariant = useMemo(() => {
-        if (LEQMobileS) {
+        if (MobileS) {
             return "h3";
-        } else if (LEQMobileM || LEQMobileL) {
+        } else if (MobileM || MobileL) {
             return "h2";
         } else {
-            // LEQ Tablet || LEQLaptop || LEQLaptopL || LEQDesktop4K
             return "h1";
         }
-    }, [LEQMobileS, LEQMobileM, LEQMobileL]);
+    }, [MobileS, MobileM, MobileL]);
 
     const subTitleVariant = useMemo(() => {
-        if (LEQMobileS) {
+        if (MobileS) {
             return "h6";
-        } else if (LEQMobileM || LEQMobileL) {
+        } else if (MobileM || MobileL) {
             return "h5";
+        } else if (Tablet) {
+            return "h3";
         } else {
-            // LEQ Tablet || LEQLaptop || LEQLaptopL || LEQDesktop4K
-            return "h4";
+            return "h2";
         }
-    }, [LEQMobileS, LEQMobileM, LEQMobileL]);
+    }, [MobileS, MobileM, MobileL, Tablet]);
 
     return (
         <Fade in={true}>
             <Box bgcolor={"#25255B"} width={"100vw"} height={"100vh"}>
-                <ResponsiveGrid>
+                <Grid
+                    columns={columns}
+                    columnSpacing={columnSpacing}
+                    paddingX={paddingX}
+                    height={"100%"}
+                    container
+                >
                     <Grid
                         item
                         xs={4}
                         sm={8}
-                        md={12}
+                        md={8}
                         lg={12}
-                        alignContent={"flex-end"}
+                        xl={12}
+                        display={"flex"}
+                        alignItems={"flex-end"}
                     >
                         <Typography
-                            textAlign={"center"}
                             variant={titleVariant}
                             color={"white"}
+                            width={"100%"}
+                            textAlign={"center"}
                         >
                             Motivy
                         </Typography>
                     </Grid>
-                    <Grid item xs={4} sm={8} md={12} lg={12}>
+                    <Grid
+                        item
+                        xs={4}
+                        sm={8}
+                        md={8}
+                        lg={12}
+                        xl={12}
+                        display={"flex"}
+                        alignItems={"flex-start"}
+                    >
                         <Typography
-                            textAlign={"center"}
                             variant={subTitleVariant}
                             color={"white"}
+                            width={"100%"}
+                            textAlign={"center"}
                         >
                             {props.subtitle
                                 ? props.subtitle
                                 : "El poder del reconocimiento"}
                         </Typography>
                     </Grid>
-                </ResponsiveGrid>
+                </Grid>
             </Box>
         </Fade>
     );
