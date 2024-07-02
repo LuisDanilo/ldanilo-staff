@@ -1,35 +1,87 @@
-import { Box, Fade, Typography, Grid, TypographyProps } from "@mui/material";
+import {
+    Fade,
+    Typography,
+    Grid,
+    TypographyProps,
+    Stack,
+} from "@mui/material";
 import { useMemo } from "react";
 import { useGridParams } from "@/hooks/useGridParams";
+import { MyGridProps } from "@/types/custom.types";
 
 export interface SplashScreenProps {
     subtitle: string;
 }
 
-interface TextVariantsMemoReturn {
+interface ResponsiveProps extends MyGridProps {
     title: Pick<TypographyProps, "variant">;
     subtitle: Pick<TypographyProps, "variant">;
 }
 
+interface TextProps {
+    responsiveProps: ResponsiveProps;
+    gridProps: MyGridProps;
+    subtitle: string;
+}
+
+function Text(props: TextProps) {
+    const {
+        gridProps,
+        subtitle: subtitleText,
+        responsiveProps: { subtitle, title },
+    } = props;
+    return (
+        <Grid id={"grid-container-d117"} container {...gridProps}>
+            <Grid
+                id={"grid-item-1-d117"}
+                item
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                xs={4}
+                sm={4}
+                md={8}
+                lg={12}
+                xl={12}
+                overflow={"hidden"}
+            >
+                <Typography color={"white"} variant={title.variant}>
+                    Motivy
+                </Typography>
+            </Grid>
+            <Grid
+                id={"grid-item-2-d117"}
+                item
+                display={"flex"}
+                justifyContent={"center"}
+                alignItems={"center"}
+                xs={4}
+                sm={4}
+                md={8}
+                lg={12}
+                xl={12}
+                overflow={"hidden"}
+            >
+                <Typography color={"white"} variant={subtitle.variant}>
+                    {subtitleText}
+                </Typography>
+            </Grid>
+        </Grid>
+    );
+}
+
 export default function SplashScreen(props: SplashScreenProps) {
     const {
-        gridProps: { columnSpacing, columns, paddingX },
+        gridProps,
         breakpoints: { xs, sm, md, lg, xl },
-        theme
+        theme,
     } = useGridParams();
 
-    const textVariants = useMemo<TextVariantsMemoReturn>(() => {
+    const responsiveProps = useMemo<ResponsiveProps>(() => {
         // Default
-        let variants: TextVariantsMemoReturn = {
-            title: {
-                variant: "h3",
-            },
-            subtitle: {
-                variant: "h6",
-            },
-        };
+        let respProps: ResponsiveProps;
         if (xl || lg) {
-            variants = {
+            respProps = {
                 title: {
                     variant: "h1",
                 },
@@ -38,7 +90,7 @@ export default function SplashScreen(props: SplashScreenProps) {
                 },
             };
         } else if (md) {
-            variants = {
+            respProps = {
                 title: {
                     variant: "h1",
                 },
@@ -46,74 +98,34 @@ export default function SplashScreen(props: SplashScreenProps) {
                     variant: "h3",
                 },
             };
-        } else if (sm) {
-            variants = {
+        } else {
+            respProps = {
                 title: {
-                    variant: "h2",
+                    variant: "h3",
                 },
                 subtitle: {
-                    variant: "h5",
+                    variant: "h6",
                 },
             };
         }
-        // else if (xs) {
-        //     console.log("TextVariant: XS");
-        // }
-        return variants;
+        return respProps;
     }, [xs, sm, md, lg, xl]);
 
     return (
         <Fade in={true}>
-            <Box bgcolor={theme.palette.primary.main} width={"100vw"} height={"100vh"}>
-                <Grid
-                    columns={columns}
-                    columnSpacing={columnSpacing}
-                    paddingX={paddingX}
-                    height={"100%"}
-                    container
-                >
-                    <Grid
-                        item
-                        xs={4}
-                        sm={8}
-                        md={8}
-                        lg={12}
-                        xl={12}
-                        display={"flex"}
-                        alignItems={"flex-end"}
-                    >
-                        <Typography
-                            variant={textVariants.title.variant}
-                            color={"white"}
-                            width={"100%"}
-                            textAlign={"center"}
-                        >
-                            Motivy
-                        </Typography>
-                    </Grid>
-                    <Grid
-                        item
-                        xs={4}
-                        sm={8}
-                        md={8}
-                        lg={12}
-                        xl={12}
-                        display={"flex"}
-                        alignItems={"flex-start"}
-                    >
-                        <Typography
-                            variant={textVariants.subtitle.variant}
-                            color={"white"}
-                            width={"100%"}
-                            textAlign={"center"}
-                        >
-                            {props.subtitle
-                                ? props.subtitle
-                                : "El poder del reconocimiento"}
-                        </Typography>
-                    </Grid>
-                </Grid>
-            </Box>
+            <Stack
+                id={"splash-screen-main-stack"}
+                bgcolor={theme.palette.primary.main}
+                height={"100vh"}
+                direction={"column"}
+                justifyContent={"center"}
+            >
+                <Text
+                    responsiveProps={responsiveProps}
+                    gridProps={gridProps}
+                    subtitle={props.subtitle}
+                />
+            </Stack>
         </Fade>
     );
 }

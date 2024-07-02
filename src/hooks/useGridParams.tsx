@@ -1,10 +1,11 @@
 import { useMemo } from "react";
 import { useBreakpoints } from "@/hooks/useBreakpoints";
+import { MyGridProps, UseGridParamsReturn } from "@/types/custom.types";
 
-export function useGridParams() {
+export function useGridParams(): UseGridParamsReturn {
     const { xs, sm, md, lg, xl, theme } = useBreakpoints();
 
-    const gridProps = useMemo(() => {
+    const gridProps = useMemo<MyGridProps>(() => {
         // Default
         let props = {
             columns: 4,
