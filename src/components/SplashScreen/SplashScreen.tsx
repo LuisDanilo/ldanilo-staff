@@ -51,19 +51,19 @@ export default function SplashScreen(props: SplashScreenProps) {
         if (xl || lg) {
             respProps = {
                 title: {
-                    variant: "h1",
+                    variant: "h2",
                 },
                 subtitle: {
-                    variant: "h2",
+                    variant: "h4",
                 },
             };
         } else if (md) {
             respProps = {
                 title: {
-                    variant: "h1",
+                    variant: "h2",
                 },
                 subtitle: {
-                    variant: "h3",
+                    variant: "h5",
                 },
             };
         } else {
