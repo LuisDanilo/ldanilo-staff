@@ -1,72 +1,40 @@
-import {
-    Fade,
-    Typography,
-    Grid,
-    TypographyProps,
-    Stack,
-} from "@mui/material";
+import { Fade, Typography, Grid, TypographyProps, Stack } from "@mui/material";
 import { useMemo } from "react";
 import { useGridParams } from "@/hooks/useGridParams";
-import { MyGridProps } from "@/types/custom.types";
 
 export interface SplashScreenProps {
     subtitle: string;
 }
 
-interface ResponsiveProps extends MyGridProps {
+interface ResponsiveProps {
     title: Pick<TypographyProps, "variant">;
     subtitle: Pick<TypographyProps, "variant">;
 }
 
 interface TextProps {
     responsiveProps: ResponsiveProps;
-    gridProps: MyGridProps;
     subtitle: string;
 }
 
 function Text(props: TextProps) {
     const {
-        gridProps,
         subtitle: subtitleText,
         responsiveProps: { subtitle, title },
     } = props;
     return (
-        <Grid id={"grid-container-d117"} container {...gridProps}>
-            <Grid
-                id={"grid-item-1-d117"}
-                item
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                xs={4}
-                sm={4}
-                md={8}
-                lg={12}
-                xl={12}
-                overflow={"hidden"}
-            >
-                <Typography color={"white"} variant={title.variant}>
-                    Motivy
-                </Typography>
-            </Grid>
-            <Grid
-                id={"grid-item-2-d117"}
-                item
-                display={"flex"}
-                justifyContent={"center"}
-                alignItems={"center"}
-                xs={4}
-                sm={4}
-                md={8}
-                lg={12}
-                xl={12}
-                overflow={"hidden"}
-            >
-                <Typography color={"white"} variant={subtitle.variant}>
-                    {subtitleText}
-                </Typography>
-            </Grid>
-        </Grid>
+        <Stack
+            direction={"column"}
+            justifyContent={"center"}
+            alignItems={"center"}
+            id="splash-screen-text"
+        >
+            <Typography color={"white"} variant={title.variant}>
+                Motivy
+            </Typography>
+            <Typography color={"white"} variant={subtitle.variant}>
+                {subtitleText}
+            </Typography>
+        </Stack>
     );
 }
 
@@ -120,11 +88,26 @@ export default function SplashScreen(props: SplashScreenProps) {
                 direction={"column"}
                 justifyContent={"center"}
             >
-                <Text
-                    responsiveProps={responsiveProps}
-                    gridProps={gridProps}
-                    subtitle={props.subtitle}
-                />
+                <Grid id={"grid-container-d117"} container {...gridProps}>
+                    <Grid
+                        id={"grid-item-1-d117"}
+                        item
+                        display={"flex"}
+                        justifyContent={"center"}
+                        alignItems={"center"}
+                        xs={4}
+                        sm={4}
+                        md={8}
+                        lg={12}
+                        xl={12}
+                        overflow={"hidden"}
+                    >
+                        <Text
+                            responsiveProps={responsiveProps}
+                            subtitle={props.subtitle}
+                        />
+                    </Grid>
+                </Grid>
             </Stack>
         </Fade>
     );

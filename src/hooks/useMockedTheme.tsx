@@ -30,6 +30,9 @@ export function useMockedTheme(themeMode: PaletteMode) {
                 createTheme({
                     typography: {
                         fontFamily,
+                        h6: {
+                            letterSpacing: "0.15px"
+                        }
                     },
                     breakpoints: {
                         values: MUIBreakpointValues,

@@ -17,6 +17,9 @@ export function useDynamicTheme() {
         createTheme({
             typography: {
                 fontFamily,
+                h6: {
+                    letterSpacing: "0.15px"
+                }
             },
             breakpoints: {
                 values: MUIBreakpointValues,
@@ -41,6 +44,9 @@ export function useDynamicTheme() {
                 createTheme({
                     typography: {
                         fontFamily,
+                        h6: {
+                            letterSpacing: "0.15px"
+                        }
                     },
                     breakpoints: {
                         values: MUIBreakpointValues,
