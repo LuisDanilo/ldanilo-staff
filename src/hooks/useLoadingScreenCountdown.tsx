@@ -4,12 +4,13 @@ export function useLoadingScreenCountdown() {
     const [showLoadingScreen, setShowLoadingScreen] = useState(true);
 
     useEffect(() => {
-        const timeout = setTimeout(() => {
+        let timeout: NodeJS.Timeout | null = null;
+        timeout = setTimeout(() => {
             setShowLoadingScreen(false);
         }, 1500);
 
         return () => {
-            clearTimeout(timeout);
+            timeout && clearTimeout(timeout);
         };
     }, []);
 

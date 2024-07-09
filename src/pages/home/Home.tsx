@@ -1,17 +1,21 @@
 import { useLoadingScreenCountdown } from "@/hooks/useLoadingScreenCountdown";
-import { useRedirectionToLoginOrHome } from "@/hooks/useRedirectionToLoginOrHome";
 import { useAuthStore, useThemeStore } from "@/utils/storage";
-import { Button, Stack } from "@mui/material";
-import { Suspense, lazy } from "react";
+import { lazy } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const SplashScreen = lazy(
     () => import("@/components/SplashScreen/SplashScreen")
 );
 
+const Button = lazy(() => import("@mui/material/Button"));
+const Stack = lazy(() => import("@mui/material/Stack"));
+const Dialog = lazy(() => import("@mui/material/Dialog"));
+
 export default function Home() {
+    const authToken = useAuthStore((store) => store.authToken);
+    const navigate = useNavigate();
     const [showLoadingScreen] = useLoadingScreenCountdown();
-    const [] = useRedirectionToLoginOrHome();
 
     const setToken = useAuthStore((store) => store.setToken);
     const switchTheme = useThemeStore((store) => store.switchTheme);
@@ -20,6 +24,7 @@ export default function Home() {
 
     const handleHomeButtonClick = () => {
         setToken(null);
+        navigate("/login");
     };
 
     const handleSwitchThemeButtonClick = () => {
@@ -27,10 +32,19 @@ export default function Home() {
     };
 
     if (showLoadingScreen) {
+        return <SplashScreen subtitle={t("slogan")} />;
+    } else if (!authToken) {
         return (
-            <Suspense>
-                <SplashScreen subtitle={t("slogan")} />
-            </Suspense>
+            <Dialog open={true}>
+                Tu sesion expiro
+                <Button
+                    onClick={() => navigate("/login")}
+                    variant={"contained"}
+                    color={"primary"}
+                >
+                    Llevame a login
+                </Button>
+            </Dialog>
         );
     } else {
         return (
