@@ -3,12 +3,12 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
 const Home = lazy(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
     return import("@/pages/home/Home");
 });
 
 const Login = lazy(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
     return import("@/pages/login/Login");
 });
 
