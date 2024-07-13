@@ -4,15 +4,13 @@ import { useDynamicTheme } from "@/hooks/useDynamicTheme";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/utils/storage";
 import { useEffect } from "react";
-import { useRouter } from "@/hooks/useRouter";
+import { router } from "@/router/router";
 
 function App() {
     const [theme] = useDynamicTheme();
     const {
         i18n: { changeLanguage },
     } = useTranslation();
-
-    const router = useRouter()
 
     const language = useUserStore((store) => store.language);
 
