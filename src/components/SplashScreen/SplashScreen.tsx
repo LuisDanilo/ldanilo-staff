@@ -23,7 +23,7 @@ interface TextProps {
     subtitle: string;
 }
 
-function Text(props: TextProps) {
+function Text(props: Readonly<TextProps>) {
     const {
         subtitle: subtitleText,
         responsiveProps: { subtitle, title },
@@ -45,7 +45,7 @@ function Text(props: TextProps) {
     );
 }
 
-export default function SplashScreen(props: SplashScreenProps) {
+export default function SplashScreen(props: Readonly<SplashScreenProps>) {
     const {
         gridProps,
         breakpoints: { xs, sm, md, lg, xl },

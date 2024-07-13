@@ -20,7 +20,7 @@ interface HeaderProps
     extends Pick<UseGridParamsReturn, "gridProps">,
         Pick<ResponsiveProps, "header"> {}
 
-function Header({ gridProps, header }: HeaderProps) {
+function Header({ gridProps, header }: Readonly<HeaderProps>) {
     const { height } = header;
 
     return (
