@@ -2,9 +2,9 @@ import Loader from "@/components/Loader/Loader";
 import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-const Home = lazy(async () => import("@/pages/home/Home"));
+const Home = lazy(() => import("@/pages/home/Home"));
 
-const Login = lazy(async () => import("@/pages/login/Login"));
+const Login = lazy(() => import("@/pages/login/Login"));
 
 export const router = createBrowserRouter([
     {

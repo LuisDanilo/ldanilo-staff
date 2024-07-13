@@ -29,7 +29,7 @@ interface SnackbarProps extends Pick<AlertProps, "severity"> {
     onClose: () => void;
 }
 
-function LoginStatusSnackbar(props: SnackbarProps) {
+function LoginStatusSnackbar(props: Readonly<SnackbarProps>) {
     return (
         <Snackbar
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
