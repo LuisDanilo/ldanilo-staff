@@ -1,13 +1,7 @@
 import { TypographyProps } from "@mui/material/Typography";
-import { lazy } from "react";
 import { useMemo } from "react";
 import { useGridParams } from "@/hooks/useGridParams";
-
-const Fade = lazy(() => import("@mui/material/Fade"));
-const Typography = lazy(() => import("@mui/material/Typography"));
-const Grid = lazy(() => import("@mui/material/Grid"));
-const Stack = lazy(() => import("@mui/material/Stack"));
-const Box = lazy(() => import("@mui/material/Box"));
+import { Fade, Typography, Grid, Stack, Box } from "@mui/material";
 
 export interface SplashScreenProps {
     subtitle: string;
