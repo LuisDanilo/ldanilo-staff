@@ -1,7 +1,13 @@
-import { TypographyProps } from "@mui/material/Typography";
 import { useMemo } from "react";
 import { useGridParams } from "@/hooks/useGridParams";
-import { Fade, Typography, Grid, Stack, Box } from "@mui/material";
+import {
+    Fade,
+    Typography,
+    Grid,
+    Stack,
+    Box,
+    TypographyProps,
+} from "@mui/material";
 
 export interface SplashScreenProps {
     subtitle: string;

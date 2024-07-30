@@ -1,6 +1,5 @@
 import { useLoadingScreenCountdown } from "@/hooks/useLoadingScreenCountdown";
 import { useAuthStore, useThemeStore, useUserStore } from "@/utils/storage";
-import { AlertProps } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { lazy } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +12,7 @@ import {
     Snackbar,
     Alert,
     Box,
+    AlertProps,
 } from "@mui/material";
 import ModeNight from "@mui/icons-material/ModeNight";
 import WbSunny from "@mui/icons-material/WbSunny";
