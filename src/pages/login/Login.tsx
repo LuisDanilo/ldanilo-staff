@@ -1,25 +1,26 @@
 import { useLoadingScreenCountdown } from "@/hooks/useLoadingScreenCountdown";
 import { useAuthStore, useThemeStore, useUserStore } from "@/utils/storage";
-import { AlertProps } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import { lazy } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import {
+    Button,
+    IconButton,
+    Typography,
+    Dialog,
+    Snackbar,
+    Alert,
+    Box,
+    AlertProps,
+} from "@mui/material";
+import ModeNight from "@mui/icons-material/ModeNight";
+import WbSunny from "@mui/icons-material/WbSunny";
+import Done from "@mui/icons-material/Done";
 
 const SplashScreen = lazy(
     () => import("@/components/SplashScreen/SplashScreen")
 );
-
-const Button = lazy(() => import("@mui/material/Button"));
-const IconButton = lazy(() => import("@mui/material/IconButton"));
-const Typography = lazy(() => import("@mui/material/Typography"));
-const ModeNight = lazy(() => import("@mui/icons-material/ModeNight"));
-const WbSunny = lazy(() => import("@mui/icons-material/WbSunny"));
-const Done = lazy(() => import("@mui/icons-material/Done"));
-const Dialog = lazy(() => import("@mui/material/Dialog"));
-const Snackbar = lazy(() => import("@mui/material/Snackbar"));
-const Alert = lazy(() => import("@mui/material/Alert"));
-const Box = lazy(() => import("@mui/material/Box"));
 
 const setTokenTimeout = 1000;
 
@@ -29,7 +30,7 @@ interface SnackbarProps extends Pick<AlertProps, "severity"> {
     onClose: () => void;
 }
 
-function LoginStatusSnackbar(props: SnackbarProps) {
+function LoginStatusSnackbar(props: Readonly<SnackbarProps>) {
     return (
         <Snackbar
             anchorOrigin={{ vertical: "bottom", horizontal: "center" }}

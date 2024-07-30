@@ -3,14 +3,11 @@ import { useAuthStore, useThemeStore } from "@/utils/storage";
 import { lazy } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Button, Stack, Dialog } from "@mui/material";
 
 const SplashScreen = lazy(
     () => import("@/components/SplashScreen/SplashScreen")
 );
-
-const Button = lazy(() => import("@mui/material/Button"));
-const Stack = lazy(() => import("@mui/material/Stack"));
-const Dialog = lazy(() => import("@mui/material/Dialog"));
 
 export default function Home() {
     const authToken = useAuthStore((store) => store.authToken);
