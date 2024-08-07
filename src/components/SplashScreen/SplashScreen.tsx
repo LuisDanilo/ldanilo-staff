@@ -1,13 +1,23 @@
 import { useMemo } from "react";
-import { useGridParams } from "@/hooks/useGridParams";
-import {
-    Fade,
-    Typography,
-    Grid,
-    Stack,
-    Box,
-    TypographyProps,
-} from "@mui/material";
+import { Fade, Typography, Box, TypographyProps, Stack } from "@mui/material";
+import { useBreakpoints } from "@/hooks/useBreakpoints";
+
+function Text(props: ResponsiveProps & { subtitleText: string }) {
+    return (
+        <Stack
+            id={"splash-screen-text"}
+            direction={"column"}
+            alignItems={"center"}
+        >
+            <Typography color={"white"} variant={props.title.variant}>
+                Motivy
+            </Typography>
+            <Typography color={"white"} variant={props.subtitle.variant}>
+                {props.subtitleText}
+            </Typography>
+        </Stack>
+    );
+}
 
 export interface SplashScreenProps {
     subtitle: string;
@@ -18,69 +28,26 @@ interface ResponsiveProps {
     subtitle: Pick<TypographyProps, "variant">;
 }
 
-interface TextProps {
-    responsiveProps: ResponsiveProps;
-    subtitle: string;
-}
-
-function Text(props: Readonly<TextProps>) {
-    const {
-        subtitle: subtitleText,
-        responsiveProps: { subtitle, title },
-    } = props;
-    return (
-        <Stack
-            direction={"column"}
-            justifyContent={"center"}
-            alignItems={"center"}
-            id="splash-screen-text"
-        >
-            <Typography color={"white"} variant={title.variant}>
-                Motivy
-            </Typography>
-            <Typography color={"white"} variant={subtitle.variant}>
-                {subtitleText}
-            </Typography>
-        </Stack>
-    );
-}
-
 export default function SplashScreen(props: Readonly<SplashScreenProps>) {
-    const {
-        gridProps,
-        breakpoints: { xs, sm, md, lg, xl },
-        theme,
-    } = useGridParams();
+    const { xs, sm, md, lg, xl, theme } = useBreakpoints();
 
     const responsiveProps = useMemo<ResponsiveProps>(() => {
         // Default
         let respProps: ResponsiveProps;
         if (xl || lg) {
             respProps = {
-                title: {
-                    variant: "h2",
-                },
-                subtitle: {
-                    variant: "h4",
-                },
+                title: { variant: "h2" },
+                subtitle: { variant: "h4" },
             };
         } else if (md) {
             respProps = {
-                title: {
-                    variant: "h2",
-                },
-                subtitle: {
-                    variant: "h5",
-                },
+                title: { variant: "h2" },
+                subtitle: { variant: "h5" },
             };
         } else {
             respProps = {
-                title: {
-                    variant: "h3",
-                },
-                subtitle: {
-                    variant: "h6",
-                },
+                title: { variant: "h3" },
+                subtitle: { variant: "h6" },
             };
         }
         return respProps;
@@ -88,9 +55,7 @@ export default function SplashScreen(props: Readonly<SplashScreenProps>) {
 
     return (
         <Box
-            sx={{
-                transition: "background-color 0.3s ease",
-            }}
+            sx={{ transition: "background-color 0.3s ease" }}
             bgcolor={theme.palette.primary.main}
         >
             <Fade in={true} timeout={500}>
@@ -99,27 +64,9 @@ export default function SplashScreen(props: Readonly<SplashScreenProps>) {
                     height={"100vh"}
                     direction={"column"}
                     justifyContent={"center"}
+                    alignItems={"center"}
                 >
-                    <Grid id={"grid-container-d117"} container {...gridProps}>
-                        <Grid
-                            id={"grid-item-1-d117"}
-                            item
-                            display={"flex"}
-                            justifyContent={"center"}
-                            alignItems={"center"}
-                            xs={4}
-                            sm={4}
-                            md={8}
-                            lg={12}
-                            xl={12}
-                            overflow={"hidden"}
-                        >
-                            <Text
-                                responsiveProps={responsiveProps}
-                                subtitle={props.subtitle}
-                            />
-                        </Grid>
-                    </Grid>
+                    <Text {...responsiveProps} subtitleText={props.subtitle} />
                 </Stack>
             </Fade>
         </Box>
